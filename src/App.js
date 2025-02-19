@@ -57,8 +57,8 @@ function App() {
             margin: "20px auto",
             fontFamily: "Arial, sans-serif",
             textAlign: "center",
-            backgroundColor: darkMode ? "#ff0000" : "#54513d",
-            color: darkMode ? "#54513d" : "#000000",
+            backgroundColor: darkMode ? "#1a1a1a" : "#ffffff",
+            color: darkMode ? "#f0f0f0" : "#000000",
             minHeight: "100vh",
             padding: "20px",
             transition: "background-color 0.3s ease, color 0.3s ease"
