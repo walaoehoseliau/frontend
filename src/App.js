@@ -118,7 +118,6 @@ function App() {
 				</button>
             {article && (
                 <div ref={articleRef} style={{ marginTop: "20px", textAlign: "left" }}>
-                    
                     <div
                         style={{
                             border: `1px solid ${darkMode ? "#444" : "#ddd"}`,
@@ -131,7 +130,7 @@ function App() {
                         }}
                         dangerouslySetInnerHTML={{ __html: article }}
                     />
-                    <button
+	                    <button
                         onClick={copyToClipboard}
                         style={{
                             backgroundColor: copied ? "#28a745" : "#007bff",
@@ -147,6 +146,29 @@ function App() {
                     >
                         {copied ? "✅ Copied!" : "📋 Copy HTML"}
                     </button>
+						{article && (
+							<div style={{ marginTop: "20px" }}>
+								<button
+									onClick={() => {
+										navigator.clipboard.writeText(article);
+										window.open("https://rentry.co", "_blank");
+									}}
+									style={{
+										backgroundColor: "#28a745",
+										color: "white",
+										padding: "10px",
+										fontSize: "16px",
+										borderRadius: "5px",
+										border: "none",
+										cursor: "pointer",
+										marginBottom: "10px",
+										transition: "background-color 0.3s ease"
+									}}
+								>
+								📋 EDITOR
+								</button>
+							</div>
+						)}
                 </div>
             )}
         </div>
