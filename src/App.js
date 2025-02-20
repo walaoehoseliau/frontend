@@ -120,12 +120,12 @@ function App() {
                 <div ref={articleRef} style={{ marginTop: "20px", textAlign: "left" }}>
                     <div
                         style={{
-                            border: `1px solid ${darkMode ? "#444" : "#ddd"}`,
+                            border: `2px solid ${darkMode ? "#444" : "#ddd"}`,
                             padding: "15px",
                             borderRadius: "5px",
                             background: darkMode ? "#222" : "#f9f9f9",
                             color: darkMode ? "#f0f0f0" : "#000",
-                            whiteSpace: "pre-wrap",
+                            whiteSpace: "normal",
                             transition: "background-color 0.3s ease, color 0.3s ease"
                         }}
                         dangerouslySetInnerHTML={{ __html: article }}
