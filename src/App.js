@@ -122,7 +122,7 @@ function App() {
                         style={{
                             border: `2px solid ${darkMode ? "#444" : "#ddd"}`,
                             padding: "10px",
-                            borderRadius: "5px",
+                            borderRadius: "10px",
                             background: darkMode ? "#222" : "#f9f9f9",
                             color: darkMode ? "#f0f0f0" : "#000",
                             whiteSpace: "normal",
