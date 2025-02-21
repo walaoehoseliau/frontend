@@ -169,7 +169,7 @@ function App() {
 			  maxWidth: "1280px",
 			  textAlign: "left",
 			  lineHeight: "1.6",
-			  whiteSpace: "pre-line",
+			  whiteSpace: "normal",
 			}}
 			dangerouslySetInnerHTML={{ __html: article.trim() !== "" ? article : "<p>Artikel belum tersedia.</p>" }}
 		  />
