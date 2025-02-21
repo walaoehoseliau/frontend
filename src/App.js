@@ -117,12 +117,12 @@ function App() {
 					{loading ? "⏳ Generating..." : "✨ Generate Article ✨"}
 				</button>
             {article && (
-                <div ref={articleRef} style={{ marginTop: "20px", textAlign: "left" }}>
+                <div ref={articleRef} style={{ marginTop: "5px", textAlign: "left" }}>
                     <div
                         style={{
                             border: `2px solid ${darkMode ? "#444" : "#ddd"}`,
-                            padding: "15px",
-                            borderRadius: "8px",
+                            padding: "10px",
+                            borderRadius: "5px",
                             background: darkMode ? "#222" : "#f9f9f9",
                             color: darkMode ? "#f0f0f0" : "#000",
                             whiteSpace: "normal",
