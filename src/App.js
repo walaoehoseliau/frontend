@@ -55,9 +55,9 @@ function App() {
         <div style={{
             maxWidth: "800px",
             margin: "20px auto",
-            fontFamily: "Arial, sans-serif",
+            fontFamily: "Roboto, sans-serif",
             textAlign: "center",
-            backgroundColor: darkMode ? "#1a1a1a" : "#111",
+            backgroundColor: darkMode ? "#1a1a1a" : "#ffffff",
             color: darkMode ? "#f0f0f0" : "#000000",
             minHeight: "100vh",
             padding: "20px",
