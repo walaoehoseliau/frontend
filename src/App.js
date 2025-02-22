@@ -67,7 +67,7 @@ function App() {
       <div style={{ width: "100%", maxWidth: "500px", textAlign: "center" }}>
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-          <h1 style={{ fontSize: "26px", fontWeight: "bold" }}>✨Walaoe✨</h1>
+          <h1 style={{ fontSize: "26px", fontWeight: "bold" }}>✨Hoseliau✨</h1>
           <button
             onClick={toggleDarkMode}
             style={{
@@ -192,4 +192,4 @@ function App() {
 		
   );
 }
-export default App;
+
