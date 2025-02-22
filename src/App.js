@@ -124,37 +124,52 @@ function App() {
         >
           {loading ? "⏳ Generating..." : "✨GENERATE✨"}
         </button>
-
-		{/* Tombol Editor */}
-		<button
-		  onClick={async () => {
-			try {
-			  await navigator.clipboard.writeText(article);
-			  setCopied(true); // Set state copied agar user tahu berhasil
-			  setTimeout(() => {
-				window.open("https://rentry.co", "_blank");
-			  }, 1000); // Delay 1 detik agar user melihat efek copy
-			} catch (err) {
-			  console.error("❌ Gagal menyalin teks:", err);
-			  alert("Gagal menyalin artikel. Silakan coba lagi!");
-			}
-		  }}
-		  style={{
-			width: "60%",
-			padding: "12px",
-			marginTop: "10px",
-			fontSize: "14px",
-			borderRadius: "5px",
-			border: "none",
-			cursor: "pointer",
-			backgroundColor: copied ? "#218838" : "#28a745", // Warna hijau lebih gelap jika sudah disalin
-			color: "white",
-			transition: "background-color 0.3s ease",
-		  }}
-		  
-		>
-		  {copied ? "✨EDITOR✨" : "✨EDITOR✨"}
-		</button>
+	{/* Tombol Copy */}
+			{article && (
+			  <button
+				onClick={copyToClipboard}
+				style={{
+				  marginTop: "10px",
+				  padding: "10px 14px",
+				  borderRadius: "5px",
+				  border: "none",
+				  cursor: "pointer",
+				  backgroundColor: "#28a745",
+				  color: "#fff",
+				  fontSize: "14px",
+				  transition: "background-color 0.3s ease",
+				}}
+			  >
+				{copied ? "✅ Copied!" : "📋 Copy Article"}
+			  </button>
+			)}
+	        {/* Efek Loading */}
+	        {loading && (
+	          <div style={{ marginTop: "15px", textAlign: "center" }}>
+	            <div className="loading-spinner"></div>
+	            <p style={{ fontSize: "14px", marginTop: "5px", opacity: "0.8" }}>Artikel sedang dibuat...</p>
+	          </div>
+	        )}
+	      </div>
+	      {/* Animasi CSS */}
+	      <style>
+	        {`
+	          .loading-spinner {
+	            width: 40px;
+	            height: 40px;
+	            border: 4px solid rgba(255, 255, 255, 0.3);
+	            border-top: 4px solid #007bff;
+	            border-radius: 50%;
+	            animation: spin 1s linear infinite;
+	            margin: auto;
+	          }
+	          @keyframes spin {
+	            0% { transform: rotate(0deg); }
+	            100% { transform: rotate(360deg); }
+	          }
+	        `}
+	      </style>
+	    </div>
 		{/* Hasil Artikel */}
 		{article && (
 		  <div
@@ -174,52 +189,7 @@ function App() {
 			dangerouslySetInnerHTML={{ __html: article.trim() !== "" ? article : "<p>Artikel belum tersedia.</p>" }}
 		  />
 		)}
-		{/* Tombol Copy */}
-		{article && (
-		  <button
-			onClick={copyToClipboard}
-			style={{
-			  marginTop: "10px",
-			  padding: "10px 14px",
-			  borderRadius: "10px",
-			  border: "none",
-			  cursor: "pointer",
-			  backgroundColor: "#28a745",
-			  color: "#fff",
-			  fontSize: "14px",
-			  transition: "background-color 0.3s ease",
-			}}
-		  >
-			{copied ? "✅ Copied!" : "📋 Copy Article"}
-		  </button>
-		)}
-        {/* Efek Loading */}
-        {loading && (
-          <div style={{ marginTop: "15px", textAlign: "center" }}>
-            <div className="loading-spinner"></div>
-            <p style={{ fontSize: "14px", marginTop: "5px", opacity: "0.8" }}>Artikel sedang dibuat...</p>
-          </div>
-        )}
-      </div>
-      {/* Animasi CSS */}
-      <style>
-        {`
-          .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid #007bff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: auto;
-          }
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        `}
-      </style>
-    </div>
+		
   );
 }
 export default App;
