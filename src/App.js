@@ -78,7 +78,7 @@ function App() {
               backgroundColor: darkMode ? "#f0f0f0" : "#333",
               color: darkMode ? "#000" : "#fff",
               fontSize: "14px",
-              transition: "background-color #18431e",
+              transition: "background-color 0.3s ease, color 0.3s ease",
             }}
           >
             {darkMode ? "Light Mode" : "Dark Mode"}
