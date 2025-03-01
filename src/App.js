@@ -162,7 +162,6 @@ function App() {
 			{copied ? "✅ Copied!" : "📋 Copy Article"}
 		  </button>
 		)}
-	     </div>
         {/* Efek Loading */}
         {loading && (
           <div style={{ marginTop: "15px", textAlign: "center" }}>
