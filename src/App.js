@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+
 function App() {
   const [keyword, setKeyword] = useState("");
   const [article, setArticle] = useState("");
@@ -8,7 +9,7 @@ function App() {
   const [copied, setCopied] = useState(false);
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("theme") === "dark");
   const articleRef = useRef(null);
-  // Generate Artikel
+
   const generateArticle = async () => {
     if (!keyword.trim()) {
       setError("❌ Keyword tidak boleh kosong!");
@@ -21,6 +22,7 @@ function App() {
     setLoading(true);
     setError(null);
     setCopied(false);
+
     try {
       const { data } = await axios.post("https://hoseliau.onrender.com/generate", { keyword });
       setArticle(data.text);
@@ -31,24 +33,25 @@ function App() {
     }
     setLoading(false);
   };
-  // Copy ke Clipboard
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(article);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-  // Auto-scroll ke hasil artikel
+
   useEffect(() => {
     if (articleRef.current && article) {
       articleRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [article]);
-  // Toggle Dark Mode
+
   const toggleDarkMode = () => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem("theme", newMode ? "dark" : "light");
   };
+
   return (
     <div
       style={{
@@ -65,7 +68,6 @@ function App() {
       }}
     >
       <div style={{ width: "100%", maxWidth: "500px", textAlign: "center" }}>
-        {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
           <h1 style={{ fontSize: "26px", fontWeight: "bold" }}>✨Hoseliau✨</h1>
           <button
@@ -84,7 +86,6 @@ function App() {
             {darkMode ? "Light Mode" : "Dark Mode"}
           </button>
         </div>
-        {/* Input Keyword */}
         <input
           type="text"
           placeholder="Masukkan keyword artikel..."
@@ -104,91 +105,46 @@ function App() {
             textAlign: "center",
           }}
         />
-        {/* Error Handling */}
         {error && <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>}
-        {/* Button Generate */}
-        <button
-          onClick={generateArticle}
-          style={{
-            width: "60%",
-            padding: "12px",
-            fontSize: "14px",
-            borderRadius: "8px",
-            border: "none",
-            cursor: loading ? "not-allowed" : "pointer",
-            backgroundColor: loading ? "#6c757d" : "#007bff",
-            color: "#ffffff",
-            transition: "opacity 0.3s ease",
-          }}
-          disabled={loading}
-        >
-          {loading ? "⏳ Generating..." : "✨GENERATE✨"}
-        </button>
-        {/* Tombol Copy */}
-        		{article && (
-        		  <button
-        			onClick={copyToClipboard}
-        			style={{
-        			  marginTop: "10px",
-        			  padding: "10px 14px",
-        			  borderRadius: "10px",
-        			  border: "none",
-        			  cursor: "pointer",
-        			  backgroundColor: "#28a745",
-        			  color: "#fff",
-        			  fontSize: "13px",
-        			  transition: "background-color 0.3s ease",
-        			}}
-        		  >
-        			{copied ? "✅ Copied!" : "📋 Copy Article"}
-        		  </button>
-        		)}
-                {/* Efek Loading */}
-                {loading && (
-                  <div style={{ marginTop: "15px", textAlign: "center" }}>
-                    <div className="loading-spinner"></div>
-                    <p style={{ fontSize: "14px", marginTop: "5px", opacity: "0.8" }}>Artikel sedang dibuat...</p>
-                  </div>
-                )}
-              </div>
-              {/* Animasi CSS */}
-              <style>
-                {`
-                  .loading-spinner {
-                    width: 40px;
-                    height: 40px;
-                    border: 4px solid rgba(255, 255, 255, 0.3);
-                    border-top: 4px solid #007bff;
-                    border-radius: 50%;
-                    animation: spin 1s linear infinite;
-                    margin: auto;
-                  }
-                  @keyframes spin {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
-                  }
-                `}
-              </style>
-      		{/* Hasil Artikel */}
-      		{article && (
-      		  <div
-      			ref={articleRef}
-      			style={{
-      			  marginTop: "20px",
-      			  padding: "15px",
-      			  borderRadius: "8px",
-      			  backgroundColor: darkMode ? "#222" : "#fff",
-      			  color: darkMode ? "#fff" : "#000",
-      			  border: "1px solid #ccc",
-      			  maxWidth: "1280px",
-      			  textAlign: "left",
-      			  lineHeight: "1.6",
-      			  whiteSpace: "normal",
-      			}}
-      			dangerouslySetInnerHTML={{ __html: article.trim() !== "" ? article : "<p>Artikel belum tersedia.</p>" }}
-      		  />
-      		)}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+          <button
+            onClick={generateArticle}
+            style={{
+              width: "60%",
+              padding: "12px",
+              fontSize: "14px",
+              borderRadius: "8px",
+              border: "none",
+              cursor: loading ? "not-allowed" : "pointer",
+              backgroundColor: loading ? "#6c757d" : "#007bff",
+              color: "#ffffff",
+              transition: "opacity 0.3s ease",
+            }}
+            disabled={loading}
+          >
+            {loading ? "⏳ Generating..." : "✨GENERATE✨"}
+          </button>
+          {article && (
+            <button
+              onClick={copyToClipboard}
+              style={{
+                padding: "10px 14px",
+                borderRadius: "10px",
+                border: "none",
+                cursor: "pointer",
+                backgroundColor: "#28a745",
+                color: "#fff",
+                fontSize: "13px",
+                transition: "background-color 0.3s ease",
+              }}
+            >
+              {copied ? "✅ Copied!" : "📋 Copy Article"}
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
+
 export default App;
