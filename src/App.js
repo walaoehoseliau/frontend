@@ -124,25 +124,6 @@ function App() {
         >
           {loading ? "⏳ Generating..." : "✨GENERATE✨"}
         </button>
-		{/* Hasil Artikel */}
-		{article && (
-		  <div
-			ref={articleRef}
-			style={{
-			  marginTop: "20px",
-			  padding: "15px",
-			  borderRadius: "8px",
-			  backgroundColor: darkMode ? "#222" : "#fff",
-			  color: darkMode ? "#fff" : "#000",
-			  border: "1px solid #ccc",
-			  maxWidth: "1280px",
-			  textAlign: "left",
-			  lineHeight: "1.6",
-			  whiteSpace: "normal",
-			}}
-			dangerouslySetInnerHTML={{ __html: article.trim() !== "" ? article : "<p>Artikel belum tersedia.</p>" }}
-		  />
-		)}
 		{/* Tombol Copy */}
 		{article && (
 		  <button
@@ -188,6 +169,25 @@ function App() {
           }
         `}
       </style>
+	      {/* Hasil Artikel */}
+		{article && (
+		  <div
+			ref={articleRef}
+			style={{
+			  marginTop: "20px",
+			  padding: "15px",
+			  borderRadius: "8px",
+			  backgroundColor: darkMode ? "#222" : "#fff",
+			  color: darkMode ? "#fff" : "#000",
+			  border: "1px solid #ccc",
+			  maxWidth: "1280px",
+			  textAlign: "left",
+			  lineHeight: "1.6",
+			  whiteSpace: "normal",
+			}}
+			dangerouslySetInnerHTML={{ __html: article.trim() !== "" ? article : "<p>Artikel belum tersedia.</p>" }}
+		  />
+		)}
     </div>
   );
 }
