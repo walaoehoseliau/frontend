@@ -151,9 +151,23 @@ function App() {
           <p style={{ fontSize: "14px", marginTop: "5px", opacity: "0.8" }}>Artikel sedang dibuat...</p>
         </div>
       )}
-      <div ref={articleRef} style={{ marginTop: "20px", width: "100%", maxWidth: "800px" }}>
-        <div dangerouslySetInnerHTML={{ __html: article }} />
-      </div>
+      {article && (
+          <div
+            ref={articleRef}
+            style={{
+              marginTop: "20px",
+              padding: "20px",
+              maxWidth: "800px",
+              borderRadius: "10px",
+              backgroundColor: darkMode ? "#222" : "#fff",
+              color: darkMode ? "#fff" : "#000",
+              border: "1px solid #ccc",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+              lineHeight: "1.6",
+            }}
+            dangerouslySetInnerHTML={{ __html: article }}
+          />
+        )}
       {/* Animasi CSS untuk loading spinner yang canggih */}
       <style>
         {`
