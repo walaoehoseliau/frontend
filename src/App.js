@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+
 function App() {
   const [keyword, setKeyword] = useState("");
   const [article, setArticle] = useState("");
@@ -11,26 +12,30 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const articleRef = useRef(null);
+
   // Dummy login function
   const handleLogin = () => {
-    if (username === "admin" && password === "walaoe") {
+    if (username === "admin" && password === "password") {
       setIsLoggedIn(true);
       localStorage.setItem("isLoggedIn", "true");
     } else {
       alert("Login gagal! Periksa username dan password.");
     }
   };
+
   // Logout function (hidden by default)
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("isLoggedIn");
   };
+
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
     if (loggedIn === "true") {
       setIsLoggedIn(true);
     }
   }, []);
+
   // Generate Artikel
   const generateArticle = async () => {
     if (!keyword.trim()) {
@@ -38,7 +43,7 @@ function App() {
       return;
     }
     if (keyword.length > 100) {
-      setError("❌ Keyword terlalu panjang! Maksimal 200 karakter.");
+      setError("❌ Keyword terlalu panjang! Maksimal 100 karakter.");
       return;
     }
     setLoading(true);
@@ -54,24 +59,28 @@ function App() {
     }
     setLoading(false);
   };
+
   // Copy ke Clipboard
   const copyToClipboard = () => {
     navigator.clipboard.writeText(article);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
   // Auto-scroll ke hasil artikel
   useEffect(() => {
     if (articleRef.current && article) {
       articleRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [article]);
+
   // Toggle Dark Mode
   const toggleDarkMode = () => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem("theme", newMode ? "dark" : "light");
   };
+
   if (!isLoggedIn) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-white">
@@ -96,6 +105,7 @@ function App() {
       </div>
     );
   }
+
   return (
     <div className={`min-h-screen flex flex-col items-center justify-center transition-all ${darkMode ? "bg-gray-900 text-white" : "bg-gray-200 text-gray-900"}`}>
       <div className="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center relative">
@@ -106,8 +116,10 @@ function App() {
             {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
           </button>
         </div>
+
         {/* Hidden Logout Button */}
         <button onClick={handleLogout} className="absolute top-2 right-2 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all opacity-0 hover:opacity-100">Logout</button>
+
         {/* Input Keyword */}
         <input
           type="text"
@@ -119,6 +131,7 @@ function App() {
         {/* Generate button */}
         <button onClick={generateArticle} className="w-full mt-4 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all">✨ GENERATE ✨</button>
       </div>
+
       {/* Loading Spinner */}
       {loading && (
         <div className="flex justify-center mt-4">
@@ -126,6 +139,7 @@ function App() {
           <p className="ml-3">Sedang memproses...</p>
         </div>
       )}
+
       {/* Hasil Artikel */}
       {article && (
         <div ref={articleRef} className="w-full max-w-2xl mt-4 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md text-left leading-relaxed text-gray-900 dark:text-white" dangerouslySetInnerHTML={{ __html: article }} />
