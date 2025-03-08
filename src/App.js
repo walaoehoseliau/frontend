@@ -7,7 +7,30 @@ function App() {
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("theme") === "dark");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const articleRef = useRef(null);
+  // Dummy login function
+  const handleLogin = () => {
+    if (username === "admin" && password === "walaoe") {
+      setIsLoggedIn(true);
+      localStorage.setItem("isLoggedIn", "true");
+    } else {
+      alert("Login gagal! Periksa username dan password.");
+    }
+  };
+  // Logout function (hidden by default)
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem("isLoggedIn");
+  };
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn");
+    if (loggedIn === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
   // Generate Artikel
   const generateArticle = async () => {
     if (!keyword.trim()) {
@@ -15,7 +38,7 @@ function App() {
       return;
     }
     if (keyword.length > 100) {
-      setError("❌ Keyword terlalu panjang! Maksimal 100 karakter.");
+      setError("❌ Keyword terlalu panjang! Maksimal 200 karakter.");
       return;
     }
     setLoading(true);
@@ -49,146 +72,66 @@ function App() {
     setDarkMode(newMode);
     localStorage.setItem("theme", newMode ? "dark" : "light");
   };
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-white">
+        <div className="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+          <h1 className="text-xl font-bold mb-4">🔒 Login</h1>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-3 mb-3 border rounded-md dark:bg-gray-700 dark:text-white"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 mb-3 border rounded-md dark:bg-gray-700 dark:text-white"
+          />
+          <button onClick={handleLogin} className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all">Login</button>
+        </div>
+      </div>
+    );
+  }
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "'Poppins', sans-serif",
-        backgroundColor: darkMode ? "#1a1a1a" : "#f8f9fa",
-        color: darkMode ? "#ffffff" : "#000000",
-        transition: "background-color 0.3s ease, color 0.3s ease",
-        padding: "20px",
-      }}
-    >
-      <div style={{ width: "100%", maxWidth: "500px", textAlign: "center" }}>
+    <div className={`min-h-screen flex flex-col items-center justify-center transition-all ${darkMode ? "bg-gray-900 text-white" : "bg-gray-200 text-gray-900"}`}>
+      <div className="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center relative">
         {/* Header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-          <h1 style={{ fontSize: "26px", fontWeight: "bold" }}>✨Hoseliau✨</h1>
-          <button
-            onClick={toggleDarkMode}
-            style={{
-              padding: "10px 14px",
-              borderRadius: "8px",
-              border: "none",
-              cursor: "pointer",
-              backgroundColor: darkMode ? "#f0f0f0" : "#333",
-              color: darkMode ? "#000" : "#fff",
-              fontSize: "14px",
-              transition: "background-color 0.3s ease, color 0.3s ease",
-            }}
-          >
-            {darkMode ? "Light Mode" : "Dark Mode"}
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white">✨ Hoseliau ✨</h1>
+          <button onClick={toggleDarkMode} className="px-4 py-2 rounded-md bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 transition-all text-gray-900 dark:text-white">
+            {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
           </button>
         </div>
+        {/* Hidden Logout Button */}
+        <button onClick={handleLogout} className="absolute top-2 right-2 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all opacity-0 hover:opacity-100">Logout</button>
         {/* Input Keyword */}
         <input
           type="text"
           placeholder="Masukkan keyword artikel..."
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          maxLength={100}
-          style={{
-            width: "92.5%",
-            padding: "12px",
-            fontSize: "16px",
-            marginBottom: "12px",
-            borderRadius: "8px",
-            border: "1px solid #ccc",
-            backgroundColor: darkMode ? "#333" : "#fff",
-            color: darkMode ? "#fff" : "#000",
-            transition: "background-color 0.3s ease, color 0.3s ease",
-            textAlign: "center",
-          }}
+          className="w-full p-3 border rounded-md dark:bg-gray-700 dark:text-white text-gray-900"
         />
-        {/* Error Handling */}
-        {error && <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>}
-        {/* Button Generate */}
-        <button
-          onClick={generateArticle}
-          style={{
-            width: "60%",
-            padding: "12px",
-            fontSize: "14px",
-            borderRadius: "8px",
-            border: "none",
-            cursor: loading ? "not-allowed" : "pointer",
-            backgroundColor: loading ? "#6c757d" : "#007bff",
-            color: "#ffffff",
-            transition: "opacity 0.3s ease",
-          }}
-          disabled={loading}
-        >
-          {loading ? "⏳ Generating..." : "✨GENERATE✨"}
-        </button>
-		{/* Hasil Artikel */}
-		{article && (
-		  <div
-			ref={articleRef}
-			style={{
-			  marginTop: "20px",
-			  padding: "15px",
-			  borderRadius: "8px",
-			  backgroundColor: darkMode ? "#222" : "#fff",
-			  color: darkMode ? "#fff" : "#000",
-			  border: "1px solid #ccc",
-			  maxWidth: "1280px",
-			  textAlign: "left",
-			  lineHeight: "1.6",
-			  whiteSpace: "normal",
-			}}
-			dangerouslySetInnerHTML={{ __html: article.trim() !== "" ? article : "<p>Artikel belum tersedia.</p>" }}
-		  />
-		)}
-		{/* Tombol Copy */}
-		{article && (
-		  <button
-			onClick={copyToClipboard}
-			style={{
-			  marginTop: "10px",
-			  padding: "10px 14px",
-			  borderRadius: "10px",
-			  border: "none",
-			  cursor: "pointer",
-			  backgroundColor: "#28a745",
-			  color: "#fff",
-			  fontSize: "13px",
-			  transition: "background-color 0.3s ease",
-			}}
-		  >
-			{copied ? "✅ Copied!" : "📋 Copy Article"}
-		  </button>
-		)}
-        {/* Efek Loading */}
-        {loading && (
-          <div style={{ marginTop: "15px", textAlign: "center" }}>
-            <div className="loading-spinner"></div>
-            <p style={{ fontSize: "14px", marginTop: "5px", opacity: "0.8" }}>Artikel sedang dibuat...</p>
-          </div>
-        )}
+        {/* Generate button */}
+        <button onClick={generateArticle} className="w-full mt-4 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all">✨ GENERATE ✨</button>
       </div>
-      {/* Animasi CSS */}
-      <style>
-        {`
-          .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid #007bff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: auto;
-          }
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        `}
-      </style>
+      {/* Loading Spinner */}
+      {loading && (
+        <div className="flex justify-center mt-4">
+          <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+          <p className="ml-3">Sedang memproses...</p>
+        </div>
+      )}
+      {/* Hasil Artikel */}
+      {article && (
+        <div ref={articleRef} className="w-full max-w-2xl mt-4 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md text-left leading-relaxed text-gray-900 dark:text-white" dangerouslySetInnerHTML={{ __html: article }} />
+      )}
     </div>
   );
 }
+
 export default App;
