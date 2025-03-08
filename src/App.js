@@ -56,35 +56,13 @@ function App() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "'Poppins', sans-serif",
-        backgroundColor: darkMode ? "#1a1a1a" : "#f8f9fa",
-        color: darkMode ? "#ffffff" : "#000000",
-        transition: "background-color 0.3s ease, color 0.3s ease",
-        padding: "20px",
-      }}
-    >
-      <div style={{ width: "100%", maxWidth: "500px", textAlign: "center" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-          <h1 style={{ fontSize: "26px", fontWeight: "bold" }}>✨Walaoe✨</h1>
+    <div className={`min-h-screen flex flex-col items-center justify-center p-5 transition-all ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"}`}>
+      <div className="w-full max-w-md text-center">
+        <div className="flex justify-between items-center mb-5">
+          <h1 className="text-2xl font-bold">✨ Walaoe ✨</h1>
           <button
             onClick={toggleDarkMode}
-            style={{
-              padding: "10px 14px",
-              borderRadius: "8px",
-              border: "none",
-              cursor: "pointer",
-              backgroundColor: darkMode ? "#f0f0f0" : "#333",
-              color: darkMode ? "#000" : "#fff",
-              fontSize: "14px",
-              transition: "background-color 0.3s ease, color 0.3s ease",
-            }}
+            className={`p-2 rounded-md text-sm transition-all ${darkMode ? "bg-gray-200 text-black" : "bg-gray-800 text-white"}`}
           >
             {darkMode ? "Light Mode" : "Dark Mode"}
           </button>
@@ -95,113 +73,38 @@ function App() {
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           maxLength={100}
-          style={{
-            width: "93%",
-            padding: "12px",
-            fontSize: "16px",
-            marginBottom: "12px",
-            borderRadius: "8px",
-            border: "1px solid #ccc",
-            backgroundColor: darkMode ? "#333" : "#fff",
-            color: darkMode ? "#fff" : "#000",
-            transition: "background-color 0.3s ease, color 0.3s ease",
-            textAlign: "center",
-          }}
+          className={`w-full p-3 text-lg border rounded-md mb-3 text-center transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 ${darkMode ? "bg-white text-black" : "bg-black text-white"}`}
         />
-        {error && <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>}
+        {error && <p className="text-red-500 mb-3">{error}</p>}
         <button
           onClick={generateArticle}
-          style={{
-            width: "60%",
-            padding: "12px",
-            fontSize: "14px",
-            borderRadius: "8px",
-            border: "none",
-            cursor: loading ? "not-allowed" : "pointer",
-            backgroundColor: loading ? "#6c757d" : "#007bff",
-            color: "#ffffff",
-            transition: "opacity 0.3s ease",
-          }}
           disabled={loading}
+          className={`w-full p-3 text-lg font-semibold rounded-md transition-all ${loading ? "bg-gray-500 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 text-white"}`}
         >
-          {loading ? "⏳ Generating..." : "✨GENERATE✨"}
+          {loading ? "⏳ Generating..." : "✨ GENERATE ✨"}
         </button>
       </div>
-      {article && (
-        <button
-          onClick={copyToClipboard}
-          style={{
-            marginTop: "10px",
-            padding: "10px 14px",
-            borderRadius: "10px",
-            border: "none",
-            cursor: "pointer",
-            backgroundColor: "#28a745",
-            color: "#fff",
-            fontSize: "14px",
-            transition: "background-color 0.3s ease",
-          }}
-        >
-          {copied ? "✅ Copied!" : "📋 Copy Article"}
-        </button>
-      )}
       {loading && (
-        <div style={{ marginTop: "15px", textAlign: "center" }}>
-          <div className="fancy-loading-spinner"></div>
-          <p style={{ fontSize: "14px", marginTop: "5px", opacity: "0.8" }}>Artikel sedang dibuat...</p>
+        <div className="flex flex-col items-center mt-5">
+          <div className="animate-spin rounded-full h-10 w-10 border-4 border-blue-400 border-t-transparent"></div>
+          <p className="mt-2 text-sm text-gray-400">Artikel sedang dibuat...</p>
         </div>
       )}
       {article && (
+        <>
+          <button
+            onClick={copyToClipboard}
+            className="mt-3 p-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-all"
+          >
+            {copied ? "✅ Copied!" : "📋 Copy Article"}
+          </button>
           <div
             ref={articleRef}
-            style={{
-              marginTop: "20px",
-              padding: "20px",
-              maxWidth: "800px",
-              borderRadius: "10px",
-              backgroundColor: darkMode ? "#222" : "#fff",
-              color: darkMode ? "#fff" : "#000",
-              border: "1px solid #ccc",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-              lineHeight: "1.6",
-            }}
+            className="mt-5 p-5 w-full max-w-2xl border rounded-md shadow-lg bg-white text-black"
             dangerouslySetInnerHTML={{ __html: article }}
           />
-        )}
-      {/* Animasi CSS untuk loading spinner yang canggih */}
-      <style>
-        {`
-          .fancy-loading-spinner {
-            margin: auto;
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(0, 123, 255, 0.2);
-            border-top: 5px solid #007bff;
-            border-radius: 50%;
-            animation: fancy-spin 1s linear infinite;
-            position: relative;
-          }
-          .fancy-loading-spinner::before {
-            content: "";
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 5px solid rgba(0, 123, 255, 0.1);
-            border-radius: 50%;
-            animation: fancy-spin-reverse 1.5s linear infinite;
-          }
-          @keyframes fancy-spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-          @keyframes fancy-spin-reverse {
-            0% { transform: rotate(360deg); }
-            100% { transform: rotate(0deg); }
-          }
-        `}
-      </style>
+        </>
+      )}
     </div>
   );
 }
