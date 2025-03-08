@@ -97,7 +97,7 @@ function App() {
           onChange={(e) => setKeyword(e.target.value)}
           maxLength={100}
           style={{
-            width: "93%",
+            width: "90%",
             padding: "12px",
             fontSize: "16px",
             marginBottom: "12px",
