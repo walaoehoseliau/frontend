@@ -66,13 +66,13 @@ function App() {
       }}
     >
       <div style={{ width: "100%", maxWidth: "500px", textAlign: "center" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+        <div style={{ display: "Fixed", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
           <h1 style={{ fontSize: "26px", fontWeight: "bold" }}>✨Walaoe✨</h1>
           <button
             onClick={toggleDarkMode}
             style={{
               padding: "10px 14px",
-              borderRadius: "8px",
+              borderRadius: "              borderRadius: "15px",",
               border: "none",
               cursor: "pointer",
               backgroundColor: darkMode ? "#f0f0f0" : "#333",
@@ -110,7 +110,7 @@ function App() {
             width: "60%",
             padding: "12px",
             fontSize: "14px",
-            borderRadius: "8px",
+            borderRadius: "15px",
             border: "none",
             cursor: loading ? "not-allowed" : "pointer",
             backgroundColor: loading ? "#6c757d" : "#007bff",
@@ -128,9 +128,9 @@ function App() {
           style={{
             marginTop: "20px",
             width: "100%",
-            maxWidth: "800px",
+            maxWidth: "400px",
             border: "2px solid #007bff",
-            borderRadius: "10px",
+            borderRadius: "15px",
             padding: "20px",
             backgroundColor: darkMode ? "#222" : "#fff",
             color: darkMode ? "#fff" : "#000",
