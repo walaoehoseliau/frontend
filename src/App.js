@@ -65,7 +65,7 @@ function App() {
         justifyContent: "center",
         fontFamily: "'Poppins', sans-serif",
         backgroundColor: darkMode ? "#1a1a1a" : "#f8f9fa",
-        color: darkMode ? "#80ff00" : "#000000",
+        color: darkMode ? "#f0f0f0" : "#000000",
         transition: "background-color 0.3s ease, color 0.3s ease",
         padding: "20px",
       }}
@@ -80,8 +80,8 @@ function App() {
               borderRadius: "10px",
               border: "none",
               cursor: "pointer",
-              backgroundColor: darkMode ? "#f0f0f0" : "#00004d",
-              color: darkMode ? "#00004d" : "#fff",
+              backgroundColor: darkMode ? "#00004d" : "#00004d",
+              color: darkMode ? "#00004d" : "#ffffff",
               fontSize: "15px",
               transition: "background-color 0.3s ease, color 0.3s ease",
             }}
