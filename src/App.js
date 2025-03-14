@@ -118,7 +118,7 @@ function App() {
             borderRadius: "10px",
             border: "fixed",
             cursor: loading ? "allowed" : "fixed",
-            backgroundColor: loading ? "#80ff00" : "#ff4000",
+            backgroundColor: loading ? "#80ff00" : "#80ff00",
             color: "#ffffff",
             transition: "opacity 0.3s ease",
           }}
