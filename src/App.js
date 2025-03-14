@@ -17,7 +17,7 @@ function App() {
       return;
     }
     if (keyword.length > 200) {
-      setError("❌ Keyword terlalu panjang! Maksimal 100 karakter.");
+      setError("❌ Keyword terlalu panjang! Maksimal 200 karakter.");
       return;
     }
     setLoading(true);
@@ -71,14 +71,14 @@ function App() {
       }}
     >
       <div style={{ width: "100%", maxWidth: "500px", textAlign: "center" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-          <h1 style={{ fontSize: "26px", fontWeight: "bold" }}>✨Walaoe✨</h1>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "25px" }}>
+          <h1 style={{ fontSize: "26px", fontWeight: "bold" }}>✨ Walaoe ✨</h1>
           <button
             onClick={toggleDarkMode}
             style={{
-              padding: "10px 14px",
-              borderRadius: "8px",
-              border: "none",
+              padding: "14px 14px",
+              borderRadius: "10px",
+              border: "1px solid",
               cursor: "pointer",
               backgroundColor: darkMode ? "#f0f0f0" : "#333",
               color: darkMode ? "#000" : "#fff",
@@ -99,8 +99,8 @@ function App() {
             width: "93%",
             padding: "15px",
             fontSize: "15px",
-            marginBottom: "10px",
-            borderRadius: "10px",
+            marginBottom: "15px",
+            borderRadius: "15px",
             border: "2px solid #ccc",
             backgroundColor: darkMode ? "#333" : "#fff",
             color: darkMode ? "#fff" : "#000",
@@ -108,7 +108,7 @@ function App() {
             textAlign: "center",
           }}
         />
-        {error && <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>}
+        {error && <p style={{ color: "red", marginBottom: "15px" }}>{error}</p>}
         <button
           onClick={generateArticle}
           style={{
@@ -135,7 +135,7 @@ function App() {
             padding: "10px 10px",
             borderRadius: "10px",
             border: "none",
-            cursor: "pointer",
+            cursor: "fixed",
             backgroundColor: "#28a745",
             color: "#fff",
             fontSize: "14px",
