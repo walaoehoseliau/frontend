@@ -108,12 +108,12 @@ function App() {
             textAlign: "center",
           }}
         />
-        {error && <p style={{ color: "red", marginBottom: "15px" }}>{error}</p>}
+        {error && <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>}
         <button
           onClick={generateArticle}
           style={{
             width: "60%",
-            padding: "12px",
+            padding: "10px",
             fontSize: "16px",
             borderRadius: "10px",
             border: "fixed",
