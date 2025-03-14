@@ -65,7 +65,7 @@ function App() {
         justifyContent: "center",
         fontFamily: "'Poppins', sans-serif",
         backgroundColor: darkMode ? "#1a1a1a" : "#f8f9fa",
-        color: darkMode ? "#00004d" : "#000000",
+        color: darkMode ? "#80ff00" : "#000000",
         transition: "background-color 0.3s ease, color 0.3s ease",
         padding: "20px",
       }}
