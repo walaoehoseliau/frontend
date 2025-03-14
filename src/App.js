@@ -65,24 +65,24 @@ function App() {
         justifyContent: "center",
         fontFamily: "'Poppins', sans-serif",
         backgroundColor: darkMode ? "#1a1a1a" : "#f8f9fa",
-        color: darkMode ? "#ffffff" : "#000000",
+        color: darkMode ? "#00004d" : "#000000",
         transition: "background-color 0.3s ease, color 0.3s ease",
         padding: "20px",
       }}
     >
       <div style={{ width: "100%", maxWidth: "500px", textAlign: "center" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "25px" }}>
-          <h1 style={{ fontSize: "26px", fontWeight: "bold" }}>✨ Walaoe ✨</h1>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+          <h1 style={{ fontSize: "26px", fontWeight: "bold" }}>✨ Hoseliau ✨</h1>
           <button
             onClick={toggleDarkMode}
             style={{
               padding: "14px 14px",
               borderRadius: "10px",
-              border: "1px solid",
+              border: "none",
               cursor: "pointer",
-              backgroundColor: darkMode ? "#f0f0f0" : "#333",
-              color: darkMode ? "#000" : "#fff",
-              fontSize: "14px",
+              backgroundColor: darkMode ? "#f0f0f0" : "#00004d",
+              color: darkMode ? "#00004d" : "#fff",
+              fontSize: "15px",
               transition: "background-color 0.3s ease, color 0.3s ease",
             }}
           >
@@ -96,13 +96,13 @@ function App() {
           onChange={(e) => setKeyword(e.target.value)}
           maxLength={100}
           style={{
-            width: "93%",
+            width: "90%",
             padding: "15px",
             fontSize: "15px",
             marginBottom: "15px",
             borderRadius: "15px",
             border: "2px solid #ccc",
-            backgroundColor: darkMode ? "#333" : "#fff",
+            backgroundColor: darkMode ? "#333" : "#091b30",
             color: darkMode ? "#fff" : "#000",
             transition: "background-color 0.3s ease, color 0.3s ease",
             textAlign: "center",
@@ -114,17 +114,17 @@ function App() {
           style={{
             width: "60%",
             padding: "12px",
-            fontSize: "14px",
+            fontSize: "16px",
             borderRadius: "10px",
             border: "fixed",
             cursor: loading ? "allowed" : "fixed",
-            backgroundColor: loading ? "#6c757d" : "#007bff",
+            backgroundColor: loading ? "#3333ff" : "#ff4000",
             color: "#ffffff",
             transition: "opacity 0.3s ease",
           }}
           enabled={loading}
         >
-          {loading ? "⏳ Generating..." : "✨GENERATE✨"}
+          {loading ? "⏳ Generating..." : "✨ GENERATE ✨"}
         </button>
       </div>
       {article && (
@@ -136,13 +136,13 @@ function App() {
             borderRadius: "10px",
             border: "none",
             cursor: "fixed",
-            backgroundColor: "#28a745",
-            color: "#fff",
-            fontSize: "14px",
+            backgroundColor: "#ff4000",
+            color: "#ffffff",
+            fontSize: "15px",
             transition: "background-color 0.3s ease",
           }}
         >
-          {copied ? "✅ Copied!" : "📋 Copy Article"}
+          {copied ? "✅ Copied!" : "📋 Copy "}
         </button>
       )}
       {article && (
