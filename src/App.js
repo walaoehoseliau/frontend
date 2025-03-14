@@ -23,7 +23,7 @@ function App() {
     setError(null);
     setCopied(false);
     try {
-      const { data } = await axios.post("https://walaoe.onrender.com/generate", { keyword });
+      const { data } = await axios.post("https://hoseliau.onrender.com/generate", { keyword });
       setArticle(data.text);
     } catch (error) {
       console.error("❌ Error saat mengambil data:", error.response ? error.response.data : error.message);
@@ -105,23 +105,23 @@ function App() {
         />
         {error && <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>}
         <button
-          onClick={generateArticle}
-          style={{
-            width: "50%",
-            padding: "12px",
-            fontSize: "14px",
-            borderRadius: "15px",
-            border: "fixed",
-            cursor: loading ? "not-allowed" : "pointer",
-            backgroundColor: loading ? "#6c757d" : "#007bff",
-            color: "#ffffff",
-            transition: "opacity 0.3s ease",
-          }}
-          enable={loading}
-        >
-          {loading ? "⏳ Generating..." : "✨GENERATE✨"}
-        </button>
-      </div>
+        onClick={generateArticle}
+        style={{
+          width: "50%",
+          padding: "12px",
+          fontSize: "14px",
+          borderRadius: "15px",
+          border: "1px solid #007bff",
+          cursor: loading ? "not-allowed" : "pointer",
+          backgroundColor: loading ? "#6c757d" : "#007bff",
+          color: "#ffffff",
+          transition: "opacity 0.3s ease",
+          opacity: loading ? 0.7 : 1, // Efek redup saat loading
+        }}
+        disabled={loading} // Memastikan tombol tidak bisa diklik saat loading
+      >
+        {loading ? "⏳ Generating..." : "✨GENERATE✨"}
+      </button>
       {loading && <p style={{ marginTop: "12px", color: "#007bff" }}>⏳ Generating...</p>}
       {article && (
         <>
@@ -147,7 +147,7 @@ function App() {
               marginTop: "20px",
               width: "100%",
               maxWidth: "400px",
-              border: "2px solid #007bff",
+              border: "2px solid #FFD700",
               borderRadius: "15px",
               padding: "20px",
               backgroundColor: darkMode ? "#222" : "#fff",
