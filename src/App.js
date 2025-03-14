@@ -16,7 +16,7 @@ function App() {
       setError("❌ Keyword tidak boleh kosong!");
       return;
     }
-    if (keyword.length > 100) {
+    if (keyword.length > 200) {
       setError("❌ Keyword terlalu panjang! Maksimal 100 karakter.");
       return;
     }
@@ -97,11 +97,11 @@ function App() {
           maxLength={100}
           style={{
             width: "93%",
-            padding: "12px",
-            fontSize: "16px",
-            marginBottom: "12px",
-            borderRadius: "8px",
-            border: "1px solid #ccc",
+            padding: "15px",
+            fontSize: "15px",
+            marginBottom: "10px",
+            borderRadius: "10px",
+            border: "2px solid #ccc",
             backgroundColor: darkMode ? "#333" : "#fff",
             color: darkMode ? "#fff" : "#000",
             transition: "background-color 0.3s ease, color 0.3s ease",
@@ -115,14 +115,14 @@ function App() {
             width: "60%",
             padding: "12px",
             fontSize: "14px",
-            borderRadius: "8px",
-            border: "none",
-            cursor: loading ? "not-allowed" : "pointer",
+            borderRadius: "10px",
+            border: "fixed",
+            cursor: loading ? "allowed" : "fixed",
             backgroundColor: loading ? "#6c757d" : "#007bff",
             color: "#ffffff",
             transition: "opacity 0.3s ease",
           }}
-          disabled={loading}
+          enabled={loading}
         >
           {loading ? "⏳ Generating..." : "✨GENERATE✨"}
         </button>
@@ -132,7 +132,7 @@ function App() {
           onClick={copyToClipboard}
           style={{
             marginTop: "10px",
-            padding: "10px 14px",
+            padding: "10px 10px",
             borderRadius: "10px",
             border: "none",
             cursor: "pointer",
@@ -149,16 +149,16 @@ function App() {
         <div
           ref={articleRef}
           style={{
-            marginTop: "20px",
-            padding: "15px",
-            borderRadius: "8px",
+            marginTop: "10px",
+            padding: "10px",
+            borderRadius: "10px",
             backgroundColor: darkMode ? "#222" : "#fff",
             color: darkMode ? "#fff" : "#000",
-            border: "1px solid #ccc",
-            maxWidth: "1280px",
+            border: "2px solid #ccc",
+            maxWidth: "500px",
             textAlign: "left",
             lineHeight: "1.6",
-            whiteSpace: "normal",
+            whiteSpace: "fixed",
           }}
           dangerouslySetInnerHTML={{ __html: article.trim() !== "" ? article : "<p>Artikel belum tersedia.</p>" }}
         />
