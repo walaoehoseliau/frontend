@@ -80,8 +80,8 @@ function App() {
               borderRadius: "10px",
               border: "none",
               cursor: "pointer",
-              backgroundColor: darkMode ? "#00004d" : "#ffffff",
-              color: darkMode ? "#00004d" : "#ffffff",
+              backgroundColor: darkMode ? "#ff8000" : "#ff8000",
+              color: darkMode ? "#ff8000" : "#ff8000",
               fontSize: "15px",
               transition: "background-color 0.3s ease, color 0.3s ease",
             }}
@@ -102,8 +102,8 @@ function App() {
             marginBottom: "15px",
             borderRadius: "15px",
             border: "2px solid #ccc",
-            backgroundColor: darkMode ? "#333" : "#222",
-            color: darkMode ? "#222" : "#333",
+            backgroundColor: darkMode ? "#fff" : "#222",
+            color: darkMode ? "#222" : "#111",
             transition: "background-color 0.3s ease, color 0.3s ease",
             textAlign: "center",
           }}
