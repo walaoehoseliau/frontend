@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
-  function App() {
+function App() {
   const [keyword, setKeyword] = useState("");
   const [article, setArticle] = useState("");
   const [loading, setLoading] = useState(false);
@@ -12,11 +12,11 @@ import axios from "axios";
 
   const generateArticle = async () => {
     if (!keyword.trim()) {
-      setError("Keyword tidak boleh kosong!");
+      setError("❌ Keyword tidak boleh kosong!");
       return;
     }
     if (keyword.length > 200) {
-      setError("Keyword terlalu panjang! Maksimal 200 karakter.");
+      setError("❌ Keyword terlalu panjang! Maksimal 200 karakter.");
       return;
     }
     setLoading(true);
@@ -26,8 +26,8 @@ import axios from "axios";
       const { data } = await axios.post("https://walaoe.onrender.com/generate", { keyword });
       setArticle(data.text);
     } catch (error) {
-      console.error("Error saat mengambil data:", error.response ? error.response.data : error.message);
-      setError("Gagal menghasilkan artikel. Coba lagi nanti.");
+      console.error("❌ Error saat mengambil data:", error.response ? error.response.data : error.message);
+      setError("❌ Gagal menghasilkan artikel. Coba lagi nanti.");
     }
     setLoading(false);
   };
@@ -60,7 +60,7 @@ import axios from "axios";
         justifyContent: "center",
         fontFamily: "'Poppins', sans-serif",
         backgroundColor: darkMode ? "#1a1a1a" : "#f8f9fa",
-        color: darkMode ? "#80ff00" : "#000000",
+        color: darkMode ? "#ffffff" : "#000000",
         transition: "background-color 0.3s ease, color 0.3s ease",
         padding: "20px",
       }}
@@ -71,8 +71,8 @@ import axios from "axios";
           <button
             onClick={toggleDarkMode}
             style={{
-              padding: "14px 14px",
-              borderRadius: "10px",
+              padding: "10px 14px",
+              borderRadius: "8px",
               border: "none",
               cursor: "pointer",
               backgroundColor: darkMode ? "#f0f0f0" : "#333",
@@ -89,9 +89,9 @@ import axios from "axios";
           placeholder="Masukkan keyword artikel..."
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          maxLength={200}
+          maxLength={100}
           style={{
-            width: "90%",
+            width: "93%",
             padding: "12px",
             fontSize: "16px",
             marginBottom: "12px",
@@ -110,7 +110,7 @@ import axios from "axios";
             width: "60%",
             padding: "12px",
             fontSize: "14px",
-            borderRadius: "12px",
+            borderRadius: "8px",
             border: "none",
             cursor: loading ? "not-allowed" : "pointer",
             backgroundColor: loading ? "#6c757d" : "#007bff",
@@ -121,43 +121,26 @@ import axios from "axios";
         >
           {loading ? "⏳ Generating..." : "✨GENERATE✨"}
         </button>
-		</div>
-      {article && (
-        <button
-          onClick={copyToClipboard}
-          style={{
-            marginTop: "10px",
-            padding: "10px 10px",
-            borderRadius: "12px",
-            border: "none",
-            cursor: "fixed",
-            backgroundColor: "#80ff00",
-            color: "#ffffff",
-            fontSize: "15px",
-            transition: "background-color 0.3s ease",
-          }}
-        >
-          {copied ? "✅ Copied!" : "📋 Copy "}
-        </button>
-		</div>
-      )}
+      </div>
       {article && (
         <div
           ref={articleRef}
           style={{
-            marginTop: "10px",
-            padding: "10px",
-            borderRadius: "12px",
+            marginTop: "20px",
+            width: "100%",
+            maxWidth: "800px",
+            border: "2px solid #007bff",
+            borderRadius: "10px",
+            padding: "20px",
             backgroundColor: darkMode ? "#222" : "#fff",
             color: darkMode ? "#fff" : "#000",
-            border: "2px solid #ccc",
-            maxWidth: "400px",
-            textAlign: "left",
-            lineHeight: "1.6",
-            whiteSpace: "fixed",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+            transition: "background-color 0.3s ease, color 0.3s ease",
+            display: article ? "block" : "none",
           }}
-          dangerouslySetInnerHTML={{ __html: article.trim() !== "" ? article : "<p>Artikel belum tersedia.</p>" }}
-        />
+        >
+          <div dangerouslySetInnerHTML={{ __html: article }} />
+        </div>
       )}
     </div>
   );
