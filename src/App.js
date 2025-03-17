@@ -23,7 +23,7 @@ function App() {
     setError(null);
     setCopied(false);
     try {
-      const { data } = await axios.post("https://hoseliau.onrender.com/generate", { keyword });
+      const { data } = await axios.post("https://hoseliau.vercel.app/generate", { keyword });
       setArticle(data.text);
     } catch (error) {
       console.error("❌ Error saat mengambil data:", error.response ? error.response.data : error.message);
@@ -59,8 +59,8 @@ function App() {
         alignItems: "center",
         justifyContent: "center",
         fontFamily: "'Poppins', sans-serif",
-        backgroundColor: darkMode ? "#919294" : "#919294",
-        color: darkMode ? "#919294" : "#919294",
+        backgroundColor: darkMode ? "#1a1a1a" : "#f8f9fa",
+        color: darkMode ? "#ffffff" : "#000000",
         transition: "background-color 0.3s ease, color 0.3s ease",
         padding: "20px",
       }}
@@ -75,7 +75,7 @@ function App() {
               borderRadius: "15px",
               border: "none",
               cursor: "pointer",
-              backgroundColor: darkMode ? "#000" : "#000",
+              backgroundColor: darkMode ? "#f0f0f0" : "#333",
               color: darkMode ? "#000" : "#fff",
               fontSize: "14px",
               transition: "background-color 0.3s ease, color 0.3s ease",
@@ -96,9 +96,9 @@ function App() {
             fontSize: "15px",
             marginBottom: "15px",
             borderRadius: "15px",
-            border: "1px solid #6600cc",
+            border: "1px solid #ccc",
             backgroundColor: darkMode ? "#333" : "#fff",
-            color: darkMode ? "#fff" : "#fff",
+            color: darkMode ? "#fff" : "#000",
             transition: "background-color 0.3s ease, color 0.3s ease",
             textAlign: "center",
           }}
@@ -113,8 +113,8 @@ function App() {
             borderRadius: "15px",
             border: "none",
             cursor: loading ? "not-allowed" : "pointer",
-            backgroundColor: loading ? "#6c757d" : "#6600cc",
-            color: "#999999",
+            backgroundColor: loading ? "#6c757d" : "#007bff",
+            color: "#ffffff",
             transition: "opacity 0.3s ease",
           }}
           enable={loading}
@@ -122,7 +122,7 @@ function App() {
           {loading ? "⏳ Generating..." : "✨GENERATE✨"}
         </button>
       </div>
-      {loading && <p style={{ marginTop: "15px", color: "#007bff" }}>⏳ Generating...</p>}
+      {loading && <p style={{ marginTop: "12px", color: "#007bff" }}>⏳ Generating...</p>}
       {article && (
         <>
           <button
@@ -133,7 +133,7 @@ function App() {
               borderRadius: "15px",
               border: "none",
               cursor: "pointer",
-              backgroundColor: "#999999",
+              backgroundColor: "#28a745",
               color: "#fff",
               fontSize: "15px",
               transition: "background-color 0.3s ease",
@@ -146,11 +146,11 @@ function App() {
             style={{
               marginTop: "15px",
               width: "100%",
-              maxWidth: "500px",
-              border: "2px solid #ffffff",
+              maxWidth: "400px",
+              border: "2px solid #007bff",
               borderRadius: "15px",
               padding: "15px",
-              backgroundColor: darkMode ? "#595959" : "#f0f0f0",
+              backgroundColor: darkMode ? "#222" : "#fff",
               color: darkMode ? "#fff" : "#000",
               boxShadow: "0 2px 15px rgba(0, 0, 0, 0.2)",
               transition: "background-color 0.3s ease, color 0.3s ease",
