@@ -145,7 +145,7 @@ function App() {
             ref={articleRef}
             style={{
               marginTop: "15px",
-              width: "80%",
+              width: "100%",
               maxWidth: "400px",
               border: "2px solid #ffffff",
               borderRadius: "15px",
