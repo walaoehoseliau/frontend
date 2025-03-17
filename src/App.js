@@ -59,8 +59,8 @@ function App() {
         alignItems: "center",
         justifyContent: "center",
         fontFamily: "'Poppins', sans-serif",
-        backgroundColor: darkMode ? "#1a1a1a" : "#f8f9fa",
-        color: darkMode ? "#ffffff" : "#000000",
+        backgroundColor: darkMode ? "#3b3b3b" : "#919294",
+        color: darkMode ? "#3b3b3b" : "#919294",
         transition: "background-color 0.3s ease, color 0.3s ease",
         padding: "20px",
       }}
@@ -75,7 +75,7 @@ function App() {
               borderRadius: "15px",
               border: "none",
               cursor: "pointer",
-              backgroundColor: darkMode ? "#f0f0f0" : "#333",
+              backgroundColor: darkMode ? "#9e9e9e" : "#333",
               color: darkMode ? "#000" : "#fff",
               fontSize: "14px",
               transition: "background-color 0.3s ease, color 0.3s ease",
@@ -98,7 +98,7 @@ function App() {
             borderRadius: "15px",
             border: "1px solid #ccc",
             backgroundColor: darkMode ? "#333" : "#fff",
-            color: darkMode ? "#fff" : "#000",
+            color: darkMode ? "#fff" : "#fff",
             transition: "background-color 0.3s ease, color 0.3s ease",
             textAlign: "center",
           }}
@@ -122,7 +122,7 @@ function App() {
           {loading ? "⏳ Generating..." : "✨GENERATE✨"}
         </button>
       </div>
-      {loading && <p style={{ marginTop: "12px", color: "#007bff" }}>⏳ Generating...</p>}
+      {loading && <p style={{ marginTop: "15px", color: "#007bff" }}>⏳ Generating...</p>}
       {article && (
         <>
           <button
@@ -133,7 +133,7 @@ function App() {
               borderRadius: "15px",
               border: "none",
               cursor: "pointer",
-              backgroundColor: "#28a745",
+              backgroundColor: "#3a05a3",
               color: "#fff",
               fontSize: "15px",
               transition: "background-color 0.3s ease",
@@ -145,9 +145,9 @@ function App() {
             ref={articleRef}
             style={{
               marginTop: "15px",
-              width: "100%",
+              width: "80%",
               maxWidth: "400px",
-              border: "2px solid #007bff",
+              border: "2px solid #ffffff",
               borderRadius: "15px",
               padding: "15px",
               backgroundColor: darkMode ? "#222" : "#fff",
